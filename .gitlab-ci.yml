@@ -1,22 +1,18 @@
-# Simple GitLab CI/CD configuration for static HTML/CSS sites
-# No build process required - just serve files from public folder
+# GitLab CI/CD configuration to deploy Week 4 Weather + Google Maps project
+# Static files are served from the 'public' folder via GitLab Pages
 
-# Minimal Image
 image: alpine:latest
 
-# Define the stages
 stages:
   - deploy
 
-# Deploy to GitLab Pages
 pages:
   stage: deploy
   script:
-    # Simply ensure the public folder exists
-    # GitLab Pages will serve everything in the public folder
-    - echo "Deploying static site to GitLab Pages"
+    # Echo message to confirm pipeline execution
+    - echo "Deploying Week 4 Weather Dashboard with Google Maps integration to GitLab Pages"
   artifacts:
     paths:
-      - public
+      - public   # Serve all files from the public folder
   only:
-    - main  
+    - main      # Trigger deployment only from main branch
