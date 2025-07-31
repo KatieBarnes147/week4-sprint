@@ -64,12 +64,29 @@
                 zoom: 8,
                 center: boston,
             });
+
+            // Add click event listener to capture lat/long
+            map.addListener("click", function (event) {
+                const clickedLat = event.latLng.lat();
+                const clickedLng = event.latLng.lng();
+
+                // Log coordinates (for debugging)
+                console.log("Clicked location:", clickedLat, clickedLng);
+
+                // Show coordinates in the weather-info section
+                const weatherInfo = document.getElementById("weather-info");
+                weatherInfo.innerHTML = `
+                    <p><strong>Clicked Latitude:</strong> ${clickedLat}</p>
+                    <p><strong>Clicked Longitude:</strong> ${clickedLng}</p>
+                `;
+            });
         }
     </script>
 
-    <!-- Google Maps API Script (replace YOUR_API_KEY with actual key) -->
-    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgkTjNLEsPvy2fM7tx_qt-gBzuVU-mTCM">
-    </script>
+    <!-- Google Maps API Script (your actual API key included) -->
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgkTjNLEsPvy2fM7tx_qt-gBzuVU-mTCM&callback=initMap">
+        </script>
 </body>
 
 </html>
