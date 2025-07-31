@@ -23,6 +23,13 @@ https://gitlab.com/csc6304/2025/summer-2/Katie-Barnes/katie_barnes_week4
 
 ---
 
+## **Google Cloud API Setup**
+- Google Cloud account created
+- Maps JavaScript API enabled
+- API key generated (will be restricted to GitLab Pages URL after deployment)
+
+---
+
 ## **How to View**
 1. Visit the hosted page link after deployment.
 2. Click on the map to view weather data for that location.
