@@ -21,6 +21,9 @@
     <h2>Check Current Weather</h2>
     <h3>Enter a city or latitude/longitude below to get started</h3>
 
+    <!-- Google Map Container -->
+    <div id="map" style="height: 400px; width: 100%; margin-bottom: 20px;"></div>
+
     <!-- Input Fields -->
     <label for="city">City:</label>
     <input type="text" id="city" name="city" placeholder="Enter city name">
@@ -51,6 +54,22 @@
         <p><strong>Humidity:</strong> 45%</p>
         <p><strong>Wind Speed:</strong> 10 mph</p>
     </div>
+
+    <!-- Google Maps Initialization Script -->
+    <script>
+        function initMap() {
+            // Default location (Boston)
+            const boston = { lat: 42.3601, lng: -71.0589 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 8,
+                center: boston,
+            });
+        }
+    </script>
+
+    <!-- Google Maps API Script (replace YOUR_API_KEY with actual key) -->
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgkTjNLEsPvy2fM7tx_qt-gBzuVU-mTCM">
+    </script>
 </body>
 
 </html>
