@@ -68,10 +68,11 @@
                 const response = await fetch(url);
                 const data = await response.json();
 
-                // Update weather-info div with real API data
+                // Clear and update weather-info div with new data each click
                 const weatherInfo = document.getElementById("weather-info");
                 weatherInfo.innerHTML = `
-                    <p><strong>City:</strong> ${data.name}</p>
+                    <h3>Weather Details</h3>
+                    <p><strong>City:</strong> ${data.name || "Unknown Location"}</p>
                     <p><strong>Temperature:</strong> ${data.main.temp} °F</p>
                     <p><strong>Condition:</strong> ${data.weather[0].description}</p>
                     <p><strong>Humidity:</strong> ${data.main.humidity}%</p>
