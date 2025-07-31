@@ -10,7 +10,7 @@ This project builds on my Week 3 Weather Dashboard by adding **Google Maps API**
 https://gitlab.com/csc6304/2025/summer-2/Katie-Barnes/katie_barnes_week4
 
 - **Hosted Page (GitLab Pages):**  
-*(Will update after deployment)*
+https://katie-barnes-week4-245c9d.gitlab.io/
 
 ---
 
@@ -32,12 +32,12 @@ https://gitlab.com/csc6304/2025/summer-2/Katie-Barnes/katie_barnes_week4
 ## **Setup Notes**
 - I created a new Google Cloud project, enabled the Maps API, and added my API key to the script in `index.html`.
 - I created a free OpenWeather account and used the API key to fetch live weather data.
-- API keys are restricted to work only with my deployed GitLab Pages URL (once live).
+- The Maps API key is restricted to my deployed GitLab Pages URL for security.
 
 ---
 
 ## **How to Use**
-1. Open the hosted page (link above once deployed).
+1. Open the hosted page (link above).
 2. Click on the map anywhere in the world to see current weather for that spot.
 3. Use the input fields if you want to test city or manual latitude/longitude lookups (carried over from Week 3).
 
