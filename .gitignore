@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+env/
+ENV/
+dist/
+build/
+.DS_Store
+Thumbs.db
+
+# secrets / creds
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.keystore
+*.jks
+*.mobileprovision
