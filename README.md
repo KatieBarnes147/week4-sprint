@@ -1,47 +1,74 @@
-# Project #4 – JavaScript and Google Maps API
+# Week 4 — JavaScript + Google Maps (Weather Dashboard) · `week4-sprint`
+[![Secret Scan](https://github.com/KatieBarnes147/week4-sprint/actions/workflows/secret-scan.yml/badge.svg?branch=main)](https://github.com/KatieBarnes147/week4-sprint/actions/workflows/secret-scan.yml)
 
-This project builds on my Week 3 Weather Dashboard by adding **Google Maps API** integration and connecting it to the **OpenWeather API**. Users can click anywhere on the map to retrieve real-time weather data for that location.
-
----
-
-## **Project Links**
-
-- **GitLab Repository:**  
-https://gitlab.com/csc6304/2025/summer-2/Katie-Barnes/katie_barnes_week4
-
-- **Hosted Page (GitLab Pages):**  
-https://katie-barnes-week4-245c9d.gitlab.io/
+Week 4 builds on the Week 3 Weather Dashboard by adding a map experience.  
+The original assignment used the **Google Maps JavaScript API** and the **OpenWeather API** to let users click anywhere on the map and fetch real-time weather for that location.
 
 ---
 
-## **Features**
-- Integrated **Google Maps JavaScript API** for interactive map display
-- Click event listener on the map to capture latitude and longitude
-- Asynchronous API calls to **OpenWeather** for real-time weather data
-- Weather information dynamically rendered into the dashboard
+## 🎯 Features
+- Interactive map layer (Google Maps in the original assignment)
+- Click map → capture latitude/longitude
+- Fetch current weather from OpenWeather by coordinates
+- Render results into the dashboard UI
 - Responsive layout carried over from Week 3
 
 ---
 
-## **APIs Used**
-- **Google Maps JavaScript API** (for displaying the map and handling map events)
-- **OpenWeather API** (for retrieving real-time weather data based on coordinates)
+## 🔧 Tech & APIs
+- **Front-end:** HTML, CSS, JavaScript (static site in `/public`)
+- **Map:** Google Maps JS API *(assignment)*  
+  → For safe public demos, a **Leaflet/OpenStreetMap** page is included (`public/demo-leaflet.html`) so no API key is required.
+- **Weather:** OpenWeather API
 
 ---
 
-## **Setup Notes**
-- I created a new Google Cloud project, enabled the Maps API, and added my API key to the script in `index.html`.
-- I created a free OpenWeather account and used the API key to fetch live weather data.
-- The Maps API key is restricted to my deployed GitLab Pages URL for security.
+## 🚀 Run Locally (static site)
+> No backend needed. This just serves the `/public` folder for local viewing.
 
----
+```bash
+# PowerShell
+python -m http.server 5500 -d .\public
+# then open: http://localhost:5500
+If your Google Maps page shows an API error, that’s expected without a key.
 
-## **How to Use**
-1. Open the hosted page (link above).
-2. Click on the map anywhere in the world to see current weather for that spot.
-3. Use the input fields if you want to test city or manual latitude/longitude lookups (carried over from Week 3).
+For a key-free demo, open:
+http://localhost:5500/demo-leaflet.html (Leaflet/OpenStreetMap).
 
----
+🔑 API Keys (safe usage)
+This repo is sanitized for public viewing—no real keys are committed.
 
-## **Credits**
-Developed by Katie Barnes
+Google Maps JS API: create your own key in Google Cloud and restrict by referrer (e.g., http://localhost:5500/* for local).
+Put the key in a local copy of your HTML (do not commit keys).
+
+OpenWeather: create a free key and keep it out of version control. For public demos, use placeholder text or the Leaflet demo page.
+
+## 🖼️ Week 3 — Success
+![Week 4 — success screenshot](./public/success.png)
+
+🗂️ Project Structure
+bash
+Copy code
+.
+├─ public/                  # static site (index.html, assets)
+│  └─ demo-leaflet.html     # key-free demo page (Leaflet/OpenStreetMap)
+├─ docs/
+│  └─ week4-success.png     # screenshot used in the README
+├─ .github/workflows/
+│  └─ secret-scan.yml       # Gitleaks secret scanning on push/PR
+└─ README.md
+🔒 Security
+Real secrets/keys are not committed.
+
+The repo is scanned on every push/PR with Gitleaks (badge above).
+
+If you add a local-only demo file containing a key, add it to .gitignore before committing.
+
+🔗 Project Links
+## 🔗 Links
+**Live demo (GitHub Pages):** https://KatieBarnes147.github.io/week4-sprint/  
+Key-free demo map: https://KatieBarnes147.github.io/week4-sprint/demo-leaflet.html
+
+✍️ Author
+Katie Barnes
+GitHub: @KatieBarnes147
