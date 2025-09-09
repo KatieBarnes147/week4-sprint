@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Internal CSS for title styling */
+        h1 {
+            color: #2b6cb0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Weather Dashboard</h1>
+    <h2>Check Current Weather</h2>
+    <h3>Click anywhere on the map to get weather info for that location</h3>
+
+    <!-- Google Map container (renders above the weather dashboard) -->
+    <div id="map" style="height: 400px; width: 100%; margin-bottom: 20px;"></div>
+
+    <!-- Input Fields (kept from Week 3 project for city/lat/long lookup) -->
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" placeholder="Enter city name">
+    <br><br>
+
+    <label for="latitude">Latitude:</label>
+    <input type="text" id="latitude" name="latitude" placeholder="Enter latitude">
+    <br><br>
+
+    <label for="longitude">Longitude:</label>
+    <input type="text" id="longitude" name="longitude" placeholder="Enter longitude">
+    <br><br>
+
+    <!-- Button to manually fetch weather based on inputs -->
+    <button style="padding:10px 20px; background-color:#2b6cb0; color:white; border:none; cursor:pointer;">
+        Get Weather
+    </button>
+    <br><br>
+
+    <!-- External weather reference link -->
+    <a href="https://www.weather.com/" target="_blank">Weather.com</a>
+
+    <!-- Weather data output section -->
+    <div id="weather-info">
+        <p><strong>City:</strong> Boston</p>
+        <p><strong>Temperature:</strong> 72°F</p>
+        <p><strong>Condition:</strong> Clear skies</p>
+        <p><strong>Humidity:</strong> 45%</p>
+        <p><strong>Wind Speed:</strong> 10 mph</p>
+    </div>
+
+    <!-- JavaScript to integrate Google Maps and fetch weather data -->
+    <script>
+        // My OpenWeather API key (used for weather data requests)
+        const apiKey = "6f58af702d67a036f3896ee1818fe896";
+
+        // Fetch weather data from OpenWeather using clicked coordinates
+        async function getWeather(lat, lon) {
+            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                // Clear and update weather-info div with new data each click
+                const weatherInfo = document.getElementById("weather-info");
+                weatherInfo.innerHTML = `
+                    <h3>Weather Details</h3>
+                    <p><strong>City:</strong> ${data.name || "Unknown Location"}</p>
+                    <p><strong>Temperature:</strong> ${data.main.temp} °F</p>
+                    <p><strong>Condition:</strong> ${data.weather[0].description}</p>
+                    <p><strong>Humidity:</strong> ${data.main.humidity}%</p>
+                    <p><strong>Wind Speed:</strong> ${data.wind.speed} mph</p>
+                `;
+            } catch (error) {
+                console.error("Error fetching weather data:", error);
+            }
+        }
+
+        function initMap() {
+            // Default map center (Boston)
+            const boston = { lat: 42.3601, lng: -71.0589 };
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 8,
+                center: boston,
+            });
+
+            // Add click event: when I click the map, it fetches weather for that spot
+            map.addListener("click", function (event) {
+                const clickedLat = event.latLng.lat();
+                const clickedLng = event.latLng.lng();
+                console.log("Clicked location:", clickedLat, clickedLng);
+
+                // Call weather API for clicked coordinates
+                getWeather(clickedLat, clickedLng);
+            });
+        }
+    </script>
+
+    <!-- Google Maps API Script (my key is restricted to https://katie-barnes-week4-245c9d.gitlab.io) -->
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgkTjNLEsPvy2fM7tx_qt-gBzuVU-mTCM&callback=initMap">
+        </script>
+</body>
+
+</html>

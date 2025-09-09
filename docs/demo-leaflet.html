@@ -1,0 +1,45 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Week 4 – Weather Dashboard (Demo Map)</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 0; }
+    header { padding: 16px 20px; background:#111827; color:#fff; }
+    main { padding: 20px; max-width: 960px; margin: 0 auto; }
+    #map { height: 420px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+    .hint { color:#374151; margin:12px 0 0; }
+  </style>
+</head>
+<body>
+  <header><h1>Weather Dashboard</h1></header>
+  <main>
+    <button id="checkBtn">Check Current Weather</button>
+    <p class="hint">Click anywhere on the map to get coords (demo, no API key required)</p>
+    <div id="map"></div>
+    <pre id="out"></pre>
+  </main>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([42.3601, -71.0589], 12); // Boston-ish
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    let marker;
+    const out = document.getElementById('out');
+    map.on('click', (e) => {
+      const { lat, lng } = e.latlng;
+      if (marker) marker.remove();
+      marker = L.marker([lat,lng]).addTo(map);
+      out.textContent = `Clicked at: ${lat.toFixed(5)}, ${lng.toFixed(5)}\n(Demo mode: replace with real weather API call)`;
+    });
+
+    document.getElementById('checkBtn').addEventListener('click', () => {
+      out.textContent = 'Demo: In production, this would call your weather API for the current location.';
+    });
+  </script>
+</body>
+</html>
